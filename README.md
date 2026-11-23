@@ -270,3 +270,118 @@ fallback_result = safe_divide(first_number, second_number)  # Prints error, retu
 # Deleting a variable when no longer needed
 del fallback_result
 ```
+### Understanding Python Operators
+
+Operators are special symbols or keywords in Python that perform operations on values and variables (operands), such as math calculations, comparisons, logic checks, and assignments.
+
+#### Arithmetic Operators
+Used for mathematical calculations on numeric values:
+- `+` (Addition), `-` (Subtraction), `*` (Multiplication), `/` (True division returning a `float`)
+- `//` (Floor division rounding down toward negative infinity), `%` (Modulo / remainder), `**` (Exponentiation / power)
+
+```python
+a = 10
+b = 3
+
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.3333333333333335
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 1000
+```
+
+#### Assignment & Compound Assignment Operators
+Used to assign values to variables and update them in place:
+- `=`, `+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `**=`
+
+```python
+score = 50
+score += 25   # score becomes 75
+score //= 3   # score becomes 25
+score **= 2   # score becomes 625
+```
+
+#### Comparison Operators
+Compare two values and return a Boolean (`True` or `False`):
+- `==` (Equal to), `!=` (Not equal to), `>` (Greater than), `<` (Less than), `>=` (Greater than or equal to), `<=` (Less than or equal to)
+
+```python
+x = 10
+y = 20
+
+print(x == y)  # False
+print(x != y)  # True
+print(x < y)   # True
+print(x >= 10) # True
+```
+
+#### Logical, Membership, and Identity Operators
+- **Logical (`and`, `or`, `not`):** Combine or invert Boolean conditions (with short-circuit evaluation).
+- **Membership (`in`, `not in`):** Check whether a value exists inside a sequence or collection (such as a list, string, or tuple).
+- **Identity (`is`, `is not`):** Check whether two references point to the exact same object in memory (commonly used with `None`).
+
+```python
+is_logged_in = True
+has_access = False
+
+# Logical
+print(is_logged_in and not has_access)  # True
+print(is_logged_in or has_access)       # True
+
+# Membership
+allowed_roles = ["admin", "editor"]
+print("admin" in allowed_roles)         # True
+
+# Identity
+token = None
+print(token is None)                    # True
+```
+
+### Mastering Python Operators
+
+Gain familiarity with core Python arithmetic operators used for mathematical and numerical calculations, ordered below roughly from higher to lower precedence (`**` before `*`, `/`, `//`, `%` before `+`, `-`).
+
+#### Arithmetic Operators Overview
+- **Exponentiation (`**`):** Raises a base number to the power of an exponent (e.g., `10 ** 3` produces `1000`).
+- **Multiplication (`*`):** Multiplies two numbers (e.g., `10 * 3` equals `30`).
+- **Division (`/`):** Divides one number by another and always returns a `float` (e.g., `10 / 3` evaluates to `3.3333333333333335`).
+- **Modulus (`%`):** Returns the remainder after dividing one number by another (e.g., `10 % 3` returns `1` because `3 * 3 = 9` with `1` remaining).
+- **Floor Division (`//`):** Divides one number by another and floors the quotient down to an integer/whole value (e.g., `10 // 3` equals `3`).
+- **Addition (`+`):** Adds two numbers together (e.g., `10 + 3` equals `13`).
+- **Subtraction (`-`):** Subtracts the right operand from the left operand (e.g., `10 - 3` equals `7`).
+
+```python
+a = 10
+b = 3
+
+print(a ** b)  # 1000  (Exponentiation)
+print(a * b)   # 30    (Multiplication)
+print(a / b)   # 3.3333333333333335 (Division -> float)
+print(a % b)   # 1     (Modulus -> remainder)
+print(a // b)  # 3     (Floor division -> floored quotient)
+print(a + b)   # 13    (Addition)
+print(a - b)   # 7     (Subtraction)
+```
+
+#### Practical Example: Converting Total Seconds & Checking Even/Odd
+Combining floor division (`//`), modulo (`%`), and multiplication/addition shows how arithmetic operators work together in real scripts.
+
+```python
+total_seconds = 195
+minutes = total_seconds // 60      # 3 full minutes
+remaining_seconds = total_seconds % 60  # 15 leftover seconds
+
+print(f"{total_seconds}s = {minutes}m {remaining_seconds}s")  # 195s = 3m 15s
+
+# Using modulo (%) to check if a number is even or odd
+number = 10
+is_even = (number % 2) == 0
+print(f"Is {number} even? {is_even}")  # Is 10 even? True
+
+# Using exponentiation (**) to calculate compound growth (e.g., 100 * 1.05^2)
+principal = 100
+growth_factor = 1.05 ** 2
+print(round(principal * growth_factor, 2))  # 110.25
+```
