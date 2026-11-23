@@ -122,3 +122,307 @@ def calculate_discount(price, is_member):
     # Non-members pay the standard price
     return price
 ```
+### Python Basics: Data Types & Control Flow
+
+Learn the foundational elements of Python programming through essential data types, Boolean control flow, and supporting numeric/text representations.
+
+#### Python Data Types
+- **Literals:** Fixed values written directly into source code (such as numbers, strings, booleans, or `None`).
+- **Booleans:** `True` or `False` values (`bool`) used for conditions, comparisons, and decision-making.
+- **Integers and Floats:** Numeric types where `int` represents whole numbers without a decimal point (`-3`, `0`, `42`) and `float` represents floating-point numbers with a decimal point (`3.14`, `-0.5`, `2.0`).
+
+```python
+# Literals & basic data types
+is_active = True       # bool literal
+retries = 3            # int literal
+threshold = 0.75       # float literal
+status_label = "Ready" # str literal
+```
+
+#### While Loops and Booleans
+- **Purpose:** A `while` loop repeats a block of code as long as a condition evaluates to `True`, stopping once the Boolean state becomes `False`.
+- **Example:** Simulating a browser plugin that stays active while the user is engaged and enters sleep mode to conserve resources once engagement stops.
+
+```python
+user_engaged = True
+idle_cycles = 0
+
+while user_engaged:
+    print("Plugin active: monitoring current tab...")
+    idle_cycles += 1
+
+    # Simulate user going idle after 3 checks
+    if idle_cycles >= 3:
+        user_engaged = False
+
+print("Plugin sleeping to conserve resources.")
+```
+
+#### Additional Concepts
+- **Strings:** Ordered sequences of characters (`str`) enclosed in single (`'...'`), double (`"..."`), or triple quotes, commonly used for messages, labels, or titles.
+- **Scientific Notation:** Compact way to write very large or very small `float` values using `e` or `E` (representing powers of 10).
+- **Binary Systems:** Base-2 numeral systems (`0` and `1`) fundamental to computing; Python lets you write binary literals with a `0b` prefix and convert integers with `bin()`.
+
+```python
+# Strings
+welcome_msg = 'Welcome to the workspace'
+report_title = "Q4 Latency Summary"
+
+# Scientific notation (floats)
+planck_like_scale = 1.5e-4  # 0.00015
+large_sample_size = 2.5e6   # 2500000.0
+
+# Binary systems
+permissions_mask = 0b101    # Decimal 5 (binary 101)
+print(bin(permissions_mask))  # '0b101'
+```
+### Understanding Numbers and Strings in Python
+
+Python supports several numeric types, number-base prefixes, and text sequences (`str`) out of the box.
+
+#### Exploring Different Types of Numbers
+- **Integers (`int`):** Positive or negative whole numbers without a decimal point—useful for counts (apples, cars) or whole time units.
+- **Floating Point Numbers (`float`):** Numbers with a decimal point for fractional or non-whole values such as prices (`4.99`) or measurements.
+- **Scientific Notation:** Shorthand using `e` or `E` (powers of 10) to write very large or very small `float` values cleanly, such as `1e6` for `1000000.0`.
+
+```python
+# Integers
+apples = 12
+cars = -2
+elapsed_seconds = 90
+
+# Floating point numbers
+item_price = 4.99
+tax_rate = 0.15
+
+# Scientific notation (produces float values)
+million = 1e6          # 1000000.0
+micro_step = 2.5e-4    # 0.00025
+```
+
+#### Numbers with Various Bases
+Python integer literals can be written in different numeral bases using prefixes, all evaluating to standard integer values in Python:
+- **Binary (Base 2):** Digits `0`–`1` with a `0b` prefix (e.g., `0b1010` equals `10`).
+- **Octal (Base 8):** Digits `0`–`7` with a `0o` prefix (e.g., `0o12` equals `10`).
+- **Decimal (Base 10):** Standard base-10 digits `0`–`9` with no prefix (e.g., `10`).
+- **Hexadecimal (Base 16):** Digits `0`–`9` and letters `A`–`F` (case-insensitive) with a `0x` prefix (e.g., `0xA` equals `10`).
+
+```python
+binary_num = 0b1010    # 10
+octal_num = 0o12       # 10
+decimal_num = 10       # 10
+hex_num = 0xA          # 10
+
+print(binary_num, octal_num, decimal_num, hex_num)  # 10 10 10 10
+print(bin(10), oct(10), hex(10))                    # '0b1010' '0o12' '0xa'
+```
+
+#### Introduction to Strings
+- **Strings (`str`):** Text sequences enclosed in single (`'...'`) or double (`"..."`) quotes (and triple quotes for multi-line text), assigned to variables for messages, labels, or status text such as `"Login successful."`.
+
+```python
+status_message = "Login successful."
+username = 'alex_dev'
+greeting = f"Welcome back, {username}! {status_message}"
+
+print(greeting)  # Welcome back, alex_dev! Login successful.
+```
+### Understanding Python Variables
+
+Python variables store and manage data so you can reference, reuse, and update values across your code without retyping literals every time.
+
+#### Definition
+- **Named References / Containers:** Variables bind a name to a value in memory so you can recall or update it later.
+- **Assignment Syntax:** Created using the `=` assignment operator (for example, `x = 100`).
+
+#### Properties
+- **Dynamic Lifecycle:** Variables can be assigned, reassigned/updated, deleted with `del`, and recreated later in a program.
+- **Dynamic Typing:** A variable name can point to values of different types over time as program state changes.
+
+#### Naming Conventions
+- **Use `snake_case`:** Separate lowercase words with underscores (such as `user_name` or `total_score`), following PEP 8.
+- **Valid Characters Only:** Start with a letter or underscore (`_`), use letters, digits, and underscores only, and avoid spaces, hyphens, special symbols, or reserved Python keywords.
+
+#### Examples of Use: Division with Error Handling
+Using variables inside a function with `try` / `except` shows how values can be validated, computed, and safely returned when edge cases like division by zero occur.
+
+```python
+def safe_divide(dividend, divisor):
+    """Divide two numbers safely, returning None if division by zero occurs."""
+    try:
+        quotient = dividend / divisor
+        return quotient
+    except ZeroDivisionError:
+        error_message = "Cannot divide by zero."
+        print(error_message)
+        return None
+
+
+# Creating and updating variables
+first_number = 24
+second_number = 6
+result = safe_divide(first_number, second_number)  # 4.0
+
+# Reassigning and testing division by zero
+second_number = 0
+fallback_result = safe_divide(first_number, second_number)  # Prints error, returns None
+
+# Deleting a variable when no longer needed
+del fallback_result
+```
+### Understanding Python Operators
+
+Operators are special symbols or keywords in Python that perform operations on values and variables (operands), such as math calculations, comparisons, logic checks, and assignments.
+
+#### Arithmetic Operators
+Used for mathematical calculations on numeric values:
+- `+` (Addition), `-` (Subtraction), `*` (Multiplication), `/` (True division returning a `float`)
+- `//` (Floor division rounding down toward negative infinity), `%` (Modulo / remainder), `**` (Exponentiation / power)
+
+```python
+a = 10
+b = 3
+
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.3333333333333335
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 1000
+```
+
+#### Assignment & Compound Assignment Operators
+Used to assign values to variables and update them in place:
+- `=`, `+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `**=`
+
+```python
+score = 50
+score += 25   # score becomes 75
+score //= 3   # score becomes 25
+score **= 2   # score becomes 625
+```
+
+#### Comparison Operators
+Compare two values and return a Boolean (`True` or `False`):
+- `==` (Equal to), `!=` (Not equal to), `>` (Greater than), `<` (Less than), `>=` (Greater than or equal to), `<=` (Less than or equal to)
+
+```python
+x = 10
+y = 20
+
+print(x == y)  # False
+print(x != y)  # True
+print(x < y)   # True
+print(x >= 10) # True
+```
+
+#### Logical, Membership, and Identity Operators
+- **Logical (`and`, `or`, `not`):** Combine or invert Boolean conditions (with short-circuit evaluation).
+- **Membership (`in`, `not in`):** Check whether a value exists inside a sequence or collection (such as a list, string, or tuple).
+- **Identity (`is`, `is not`):** Check whether two references point to the exact same object in memory (commonly used with `None`).
+
+```python
+is_logged_in = True
+has_access = False
+
+# Logical
+print(is_logged_in and not has_access)  # True
+print(is_logged_in or has_access)       # True
+
+# Membership
+allowed_roles = ["admin", "editor"]
+print("admin" in allowed_roles)         # True
+
+# Identity
+token = None
+print(token is None)                    # True
+```
+
+### Mastering Python Operators
+
+Gain familiarity with core Python arithmetic operators used for mathematical and numerical calculations, ordered below roughly from higher to lower precedence (`**` before `*`, `/`, `//`, `%` before `+`, `-`).
+
+#### Arithmetic Operators Overview
+- **Exponentiation (`**`):** Raises a base number to the power of an exponent (e.g., `10 ** 3` produces `1000`).
+- **Multiplication (`*`):** Multiplies two numbers (e.g., `10 * 3` equals `30`).
+- **Division (`/`):** Divides one number by another and always returns a `float` (e.g., `10 / 3` evaluates to `3.3333333333333335`).
+- **Modulus (`%`):** Returns the remainder after dividing one number by another (e.g., `10 % 3` returns `1` because `3 * 3 = 9` with `1` remaining).
+- **Floor Division (`//`):** Divides one number by another and floors the quotient down to an integer/whole value (e.g., `10 // 3` equals `3`).
+- **Addition (`+`):** Adds two numbers together (e.g., `10 + 3` equals `13`).
+- **Subtraction (`-`):** Subtracts the right operand from the left operand (e.g., `10 - 3` equals `7`).
+
+```python
+a = 10
+b = 3
+
+print(a ** b)  # 1000  (Exponentiation)
+print(a * b)   # 30    (Multiplication)
+print(a / b)   # 3.3333333333333335 (Division -> float)
+print(a % b)   # 1     (Modulus -> remainder)
+print(a // b)  # 3     (Floor division -> floored quotient)
+print(a + b)   # 13    (Addition)
+print(a - b)   # 7     (Subtraction)
+```
+
+#### Practical Example: Converting Total Seconds & Checking Even/Odd
+Combining floor division (`//`), modulo (`%`), and multiplication/addition shows how arithmetic operators work together in real scripts.
+
+```python
+total_seconds = 195
+minutes = total_seconds // 60      # 3 full minutes
+remaining_seconds = total_seconds % 60  # 15 leftover seconds
+
+print(f"{total_seconds}s = {minutes}m {remaining_seconds}s")  # 195s = 3m 15s
+
+# Using modulo (%) to check if a number is even or odd
+number = 10
+is_even = (number % 2) == 0
+print(f"Is {number} even? {is_even}")  # Is 10 even? True
+
+# Using exponentiation (**) to calculate compound growth (e.g., 100 * 1.05^2)
+principal = 100
+growth_factor = 1.05 ** 2
+print(round(principal * growth_factor, 2))  # 110.25
+```
+### Floor Division (`//`) in Python
+
+Floor division (`//`) divides two numbers and rounds the result **down** toward negative infinity (the largest integer less than or equal to the exact quotient).
+
+#### How Floor Division Works
+- **Returns an `int` or `float`:** If both operands are integers (`int`), the result is an `int`. If either operand is a `float` (or uses scientific notation), the result is a `float` (e.g., `3.0`).
+- **Rounds Down, Not Toward Zero:** For positive numbers, `//` looks like truncating decimals, but for negative numbers it rounds further negative (toward $-\infty$).
+- **Common Use Cases:** Breaking quantities into full groups/pages, converting time units (seconds to minutes/hours), and pairing with modulo (`%`) to get quotient and remainder together.
+
+```python
+# Positive numbers: rounds down to whole units
+print(10 // 3)     # 3     (10 / 3 = 3.333... -> 3)
+print(19 // 5)     # 3     (19 / 5 = 3.8      -> 3)
+
+# Float operands: returns a float value
+print(10.0 // 3)   # 3.0
+print(10 // 3.0)   # 3.0
+
+# Negative numbers: rounds toward negative infinity (-3.333... -> -4)
+print(-10 // 3)    # -4
+print(10 // -3)    # -4
+```
+
+#### Practical Examples: Pagination & Time Breakdown
+Floor division is especially handy for calculating page counts or converting total units into larger blocks.
+
+```python
+# 1. Calculating full groups / batches
+total_items = 23
+items_per_page = 5
+full_pages = total_items // items_per_page
+print(f"Full pages: {full_pages}")  # Full pages: 4
+
+# 2. Converting seconds into hours, minutes, and remaining seconds
+total_seconds = 3725
+hours = total_seconds // 3600
+minutes = (total_seconds % 3600) // 60
+seconds = total_seconds % 60
+
+print(f"{hours}h {minutes}m {seconds}s")  # 1h 2m 5s
+```
