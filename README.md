@@ -85,3 +85,40 @@ def greet_function(name):
 | `with` | Simplifies resource management (e.g., file handling) | `with open('file.txt') as f:` |
 | `yield` | Pauses and returns a value from a generator | `yield x` |
 
+
+
+### Importance of Comments in Python Coding
+
+Comments are vital in Python programming for clearer understanding and collaboration among developers. They provide insight into why code behaves a certain way or what a section does, making a repository easier to read and maintain.
+
+#### Why Use Comments?
+- **Human Readability:** Comments provide clear, human-readable context alongside code.
+- **Ignored at Runtime:** Python ignores `#` comments during execution, so they have zero impact on runtime behavior or performance.
+- **Clarity:** Helpful for explaining non-obvious logic, edge cases, conditions, and workflows.
+
+#### How to Add Comments & Docstrings
+- **Single-line & Block Comments (`#`):** Prefix lines with `#` for single-line notes or consecutive `#` lines for block comments. *(Note: Triple quotes `"""..."""` or `'''...'''` create multi-line string literals—used as **docstrings** when placed right after a `def`, `class`, or module—rather than true comments.)*
+- **Docstrings (`"""..."""`):** Placed immediately below a `def` or `class` header to document purpose, parameters/arguments, and return values.
+
+#### Best Practices & Example
+- Explain **why** a condition or branch exists (such as `if` / `else` logic) rather than repeating what the code already says.
+- Use docstrings right after function definitions to document arguments and return values.
+
+```python
+def calculate_discount(price, is_member):
+    """Calculate the final price after applying a member discount.
+
+    Args:
+        price (float): Original item price.
+        is_member (bool): Whether the buyer has an active membership.
+
+    Returns:
+        float: Final price after any applicable discount.
+    """
+    # Apply a 15% discount only for active members on positive prices
+    if is_member and price > 0:
+        return price * 0.85
+
+    # Non-members pay the standard price
+    return price
+```
