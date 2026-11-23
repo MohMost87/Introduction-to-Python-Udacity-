@@ -122,3 +122,57 @@ def calculate_discount(price, is_member):
     # Non-members pay the standard price
     return price
 ```
+### Python Basics: Data Types & Control Flow
+
+Learn the foundational elements of Python programming through essential data types, Boolean control flow, and supporting numeric/text representations.
+
+#### Python Data Types
+- **Literals:** Fixed values written directly into source code (such as numbers, strings, booleans, or `None`).
+- **Booleans:** `True` or `False` values (`bool`) used for conditions, comparisons, and decision-making.
+- **Integers and Floats:** Numeric types where `int` represents whole numbers without a decimal point (`-3`, `0`, `42`) and `float` represents floating-point numbers with a decimal point (`3.14`, `-0.5`, `2.0`).
+
+```python
+# Literals & basic data types
+is_active = True       # bool literal
+retries = 3            # int literal
+threshold = 0.75       # float literal
+status_label = "Ready" # str literal
+```
+
+#### While Loops and Booleans
+- **Purpose:** A `while` loop repeats a block of code as long as a condition evaluates to `True`, stopping once the Boolean state becomes `False`.
+- **Example:** Simulating a browser plugin that stays active while the user is engaged and enters sleep mode to conserve resources once engagement stops.
+
+```python
+user_engaged = True
+idle_cycles = 0
+
+while user_engaged:
+    print("Plugin active: monitoring current tab...")
+    idle_cycles += 1
+
+    # Simulate user going idle after 3 checks
+    if idle_cycles >= 3:
+        user_engaged = False
+
+print("Plugin sleeping to conserve resources.")
+```
+
+#### Additional Concepts
+- **Strings:** Ordered sequences of characters (`str`) enclosed in single (`'...'`), double (`"..."`), or triple quotes, commonly used for messages, labels, or titles.
+- **Scientific Notation:** Compact way to write very large or very small `float` values using `e` or `E` (representing powers of 10).
+- **Binary Systems:** Base-2 numeral systems (`0` and `1`) fundamental to computing; Python lets you write binary literals with a `0b` prefix and convert integers with `bin()`.
+
+```python
+# Strings
+welcome_msg = 'Welcome to the workspace'
+report_title = "Q4 Latency Summary"
+
+# Scientific notation (floats)
+planck_like_scale = 1.5e-4  # 0.00015
+large_sample_size = 2.5e6   # 2500000.0
+
+# Binary systems
+permissions_mask = 0b101    # Decimal 5 (binary 101)
+print(bin(permissions_mask))  # '0b101'
+```
