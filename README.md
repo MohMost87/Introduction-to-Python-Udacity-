@@ -13,3 +13,11 @@ Learning Python involves understanding its lexis and keywords, which serve as bu
 `def`: Defines a new function.<br>
 `return`: Returns a value from a function.<br>
 
+### Truthiness Check (`if` / `else`)
+
+```python
+if my_variable:
+    print("Hello world.")
+else:
+    print("World, Hello.")
+
