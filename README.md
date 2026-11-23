@@ -21,3 +21,28 @@ if my_variable:
 else:
     print("World, Hello.")
 
+
+### Understanding Python Indentation Errors
+
+Indentation is critical in Python because it defines code blocks, nesting, and execution flow rather than braces (`{}`) or keywords. Improper alignment raises `IndentationError` and prevents the script from running.
+
+#### Example Function (`greet_function`)
+- Prints `Hello, {name}` when a truthy/non-empty `name` is provided.
+- Prints `Hello, World` when `name` is empty or `None`.
+
+```python
+def greet_function(name):
+    if name:
+        print(f"Hello, {name}")
+    else:
+        print("Hello, World")
+```
+
+#### Common Indentation Mistakes
+- **Importance of Indentation:** Proper alignment is required to execute Python scripts. Mixing tabs and spaces inconsistently or misaligning lines triggers `IndentationError`.
+- **Misplacing the `else` clause:** `else` must align at the exact same indentation level as its matching `if`. Misaligning it causes syntax/indentation errors (such as expecting an indented block or mismatched block level).
+- **Misaligning function contents:** Statements inside `def` must share uniform indentation (PEP 8 recommends **4 spaces** per level). Extra or uneven indentation disrupts block structure and causes errors.
+
+#### Resolving Indentation Issues
+- Realigning lines to a consistent indent level (typically **4 spaces** per block) resolves `IndentationError` so the script executes cleanly.
+
