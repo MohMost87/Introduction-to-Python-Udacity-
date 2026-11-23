@@ -560,3 +560,47 @@ qualifies_for_bonus = has_coupon and (final_total >= 200)
 print(f"Final total: {final_total}")                # Final total: 240.0
 print(f"Qualifies for bonus: {qualifies_for_bonus}")  # Qualifies for bonus: True
 ```
+### Bitwise Operators in Programming
+
+**Bitwise operators** manipulate numbers at the binary bit level (`0` and `1`). They are commonly used for feature flags/permissions, bitmasks, low-level hardware/protocol work, and fast powers-of-two shifts.
+
+#### Core Bitwise Operators
+- **Bitwise AND (`&`):** Returns `1` in each bit position where **both** operands have `1` (useful for masking/checking bits).
+- **Bitwise OR (`|`):** Returns `1` in each bit position where **at least one** operand has `1` (useful for setting/enabling flags).
+- **Bitwise XOR (`^`):** Returns `1` where the bits of the two operands **differ** (useful for toggling bits).
+- **Bitwise NOT (`~`):** Inverts all bits of an integer; in Python's two's complement representation, `~x` equals `-(x + 1)`.
+- **Left Shift (`<<`):** Shifts bits left by `n` positions, filling right positions with `0` (equivalent to multiplying by $2^n$ for non-negative integers).
+- **Right Shift (`>>`):** Shifts bits right by `n` positions, discarding shifted-out bits (equivalent to floor-dividing by $2^n$ for non-negative integers).
+
+```python
+a = 0b1100  # 12 in decimal
+b = 0b1010  # 10 in decimal
+
+print(bin(a & b), a & b)    # 0b1000  8   (AND)
+print(bin(a | b), a | b)    # 0b1110  14  (OR)
+print(bin(a ^ b), a ^ b)    # 0b110   6   (XOR)
+print(~a)                   # -13         (NOT: -(12 + 1))
+print(bin(a << 1), a << 1)  # 0b11000 24  (12 * 2^1)
+print(bin(a >> 1), a >> 1)  # 0b110   6   (12 // 2^1)
+```
+
+#### Practical Example: Permission Flags & Bitmasks
+Bitwise OR (`|`), AND (`&`), and XOR (`^`) make it clean to combine, check, and toggle individual boolean permissions inside a single integer.
+
+```python
+READ = 0b001    # 1
+WRITE = 0b010   # 2
+EXECUTE = 0b100 # 4
+
+# Grant READ and WRITE permissions using OR (|)
+permissions = READ | WRITE
+print(f"Permissions binary: {bin(permissions)}")  # 0b11 (3)
+
+# Check if WRITE permission is set using AND (&)
+can_write = (permissions & WRITE) != 0
+print(f"Can write: {can_write}")                  # True
+
+# Toggle EXECUTE permission using XOR (^)
+permissions ^= EXECUTE
+print(f"After toggling execute: {bin(permissions)}")  # 0b111 (7)
+```
