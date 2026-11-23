@@ -513,3 +513,50 @@ net_change = 12.5
 reversed_change = -net_change
 print(f"Reversed change: {reversed_change}")  # Reversed change: -12.5
 ```
+### Operator Precedence in Python
+
+**Operator precedence** determines the order in which Python evaluates operators in an expression when multiple operators appear together. Higher-precedence operators run before lower-precedence ones unless overridden by parentheses `()`.
+
+#### Precedence Order (Highest to Lowest — Common Operators)
+1. **Parentheses `()`:** Always evaluated first—use parentheses to make order explicit and readable.
+2. **Exponentiation `**`:** Evaluated before multiplication/division, and associates **right-to-left** (e.g., `2 ** 3 ** 2` means `2 ** (3 ** 2)` = `512`).
+3. **Unary `+x`, `-x`, `~x`:** Sign and bitwise NOT operators.
+4. **Multiplicative `*`, `/`, `//`, `%`:** Evaluated **left-to-right** at equal precedence.
+5. **Additive `+`, `-`:** Evaluated **left-to-right** after multiplicative operators.
+6. **Comparison `==`, `!=`, `>`, `<`, `>=`, `<=`, `is`, `is not`, `in`, `not in`:** Evaluated after arithmetic.
+7. **Logical `not`, then `and`, then `or`:** `not` binds tightest among logical operators, followed by `and`, then `or`.
+
+```python
+# 1. Exponentiation (**) and right-to-left associativity
+print(2 ** 3 ** 2)        # 512  -> 2 ** (3 ** 2) = 2 ** 9
+
+# 2. Multiplicative (*, /, //, %) vs. Additive (+, -)
+print(10 + 2 * 3)         # 16   -> 10 + (2 * 3)
+print((10 + 2) * 3)       # 36   -> parentheses override precedence
+print(20 - 10 // 4 * 2)   # 16   -> 20 - ((10 // 4) * 2) = 20 - (2 * 2)
+
+# 3. Logical precedence: not -> and -> or
+is_admin = False
+is_staff = True
+is_suspended = False
+
+can_access = is_admin or is_staff and not is_suspended
+print(can_access)         # True -> False or (True and (not False)) = True
+```
+
+#### Practical Example: Discount & Eligibility Calculation
+Parentheses clarify intent so readers and teammates do not have to guess how arithmetic and boolean conditions group together.
+
+```python
+base_price = 100
+discount_rate = 0.2
+item_count = 3
+has_coupon = True
+
+# Clear grouping with parentheses
+final_total = (base_price * item_count) * (1 - discount_rate)
+qualifies_for_bonus = has_coupon and (final_total >= 200)
+
+print(f"Final total: {final_total}")                # Final total: 240.0
+print(f"Qualifies for bonus: {qualifies_for_bonus}")  # Qualifies for bonus: True
+```
