@@ -385,3 +385,44 @@ principal = 100
 growth_factor = 1.05 ** 2
 print(round(principal * growth_factor, 2))  # 110.25
 ```
+### Floor Division (`//`) in Python
+
+Floor division (`//`) divides two numbers and rounds the result **down** toward negative infinity (the largest integer less than or equal to the exact quotient).
+
+#### How Floor Division Works
+- **Returns an `int` or `float`:** If both operands are integers (`int`), the result is an `int`. If either operand is a `float` (or uses scientific notation), the result is a `float` (e.g., `3.0`).
+- **Rounds Down, Not Toward Zero:** For positive numbers, `//` looks like truncating decimals, but for negative numbers it rounds further negative (toward $-\infty$).
+- **Common Use Cases:** Breaking quantities into full groups/pages, converting time units (seconds to minutes/hours), and pairing with modulo (`%`) to get quotient and remainder together.
+
+```python
+# Positive numbers: rounds down to whole units
+print(10 // 3)     # 3     (10 / 3 = 3.333... -> 3)
+print(19 // 5)     # 3     (19 / 5 = 3.8      -> 3)
+
+# Float operands: returns a float value
+print(10.0 // 3)   # 3.0
+print(10 // 3.0)   # 3.0
+
+# Negative numbers: rounds toward negative infinity (-3.333... -> -4)
+print(-10 // 3)    # -4
+print(10 // -3)    # -4
+```
+
+#### Practical Examples: Pagination & Time Breakdown
+Floor division is especially handy for calculating page counts or converting total units into larger blocks.
+
+```python
+# 1. Calculating full groups / batches
+total_items = 23
+items_per_page = 5
+full_pages = total_items // items_per_page
+print(f"Full pages: {full_pages}")  # Full pages: 4
+
+# 2. Converting seconds into hours, minutes, and remaining seconds
+total_seconds = 3725
+hours = total_seconds // 3600
+minutes = (total_seconds % 3600) // 60
+seconds = total_seconds % 60
+
+print(f"{hours}h {minutes}m {seconds}s")  # 1h 2m 5s
+```
