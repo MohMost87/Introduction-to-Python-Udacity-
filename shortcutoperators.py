@@ -12,3 +12,6 @@ retries_left = 3
 while retries_left > 0:
     print(f"Attempting connection... ({retries_left} retries left)")
     retries_left -= 1
+
+for points in range(3, 0, -1):
+    print(f"Retrying... ({points} retries left)")
