@@ -227,3 +227,46 @@ greeting = f"Welcome back, {username}! {status_message}"
 
 print(greeting)  # Welcome back, alex_dev! Login successful.
 ```
+### Understanding Python Variables
+
+Python variables store and manage data so you can reference, reuse, and update values across your code without retyping literals every time.
+
+#### Definition
+- **Named References / Containers:** Variables bind a name to a value in memory so you can recall or update it later.
+- **Assignment Syntax:** Created using the `=` assignment operator (for example, `x = 100`).
+
+#### Properties
+- **Dynamic Lifecycle:** Variables can be assigned, reassigned/updated, deleted with `del`, and recreated later in a program.
+- **Dynamic Typing:** A variable name can point to values of different types over time as program state changes.
+
+#### Naming Conventions
+- **Use `snake_case`:** Separate lowercase words with underscores (such as `user_name` or `total_score`), following PEP 8.
+- **Valid Characters Only:** Start with a letter or underscore (`_`), use letters, digits, and underscores only, and avoid spaces, hyphens, special symbols, or reserved Python keywords.
+
+#### Examples of Use: Division with Error Handling
+Using variables inside a function with `try` / `except` shows how values can be validated, computed, and safely returned when edge cases like division by zero occur.
+
+```python
+def safe_divide(dividend, divisor):
+    """Divide two numbers safely, returning None if division by zero occurs."""
+    try:
+        quotient = dividend / divisor
+        return quotient
+    except ZeroDivisionError:
+        error_message = "Cannot divide by zero."
+        print(error_message)
+        return None
+
+
+# Creating and updating variables
+first_number = 24
+second_number = 6
+result = safe_divide(first_number, second_number)  # 4.0
+
+# Reassigning and testing division by zero
+second_number = 0
+fallback_result = safe_divide(first_number, second_number)  # Prints error, returns None
+
+# Deleting a variable when no longer needed
+del fallback_result
+```
