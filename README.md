@@ -426,3 +426,90 @@ seconds = total_seconds % 60
 
 print(f"{hours}h {minutes}m {seconds}s")  # 1h 2m 5s
 ```
+### Shortcut (Compound Assignment) Operators in Python
+
+Shortcut operators—officially called **compound assignment operators**—combine an arithmetic operation with variable assignment in a single step, making code shorter and less repetitive.
+
+#### How Shortcut Operators Work
+- **Shorthand Pattern:** `x += 5` is shorthand for `x = x + 5` (the variable on the left is updated using its current value and the right-hand expression).
+- **Common Arithmetic Shortcuts:** `+=` (add), `-=` (subtract), `*=` (multiply), `/=` (divide into `float`), `//=` (floor divide), `%=` (modulo remainder), and `**=` (exponentiate).
+- **Readability & Safety:** Great for counters, accumulators, and running totals, though keeping expressions simple avoids surprises when types change (for example, `/=` always produces a `float`).
+
+```python
+x = 10
+
+x += 5    # x = 10 + 5   -> 15
+x -= 3    # x = 15 - 3   -> 12
+x *= 2    # x = 12 * 2   -> 24
+x //= 5   # x = 24 // 5  -> 4
+x **= 3   # x = 4 ** 3   -> 64
+x %= 10   # x = 64 % 10  -> 4
+x /= 2    # x = 4 / 2    -> 2.0 (float)
+
+print(x)  # 2.0
+```
+
+#### Practical Example: Tracking Score & Remaining Attempts
+Shortcut operators shine when updating counters, totals, or remaining budgets inside loops and functions.
+
+```python
+# 1. Accumulating points across rounds
+total_score = 0
+round_points = [15, 25, 10]
+
+for points in round_points:
+    total_score += points
+
+print(f"Final score: {total_score}")  # Final score: 50
+
+# 2. Counting down remaining retries
+retries_left = 3
+while retries_left > 0:
+    print(f"Attempting connection... ({retries_left} retries left)")
+    retries_left -= 1
+```
+### Unary Operators in Python
+
+A **unary operator** operates on a single operand (value or variable) rather than two. In Python, the main unary operators are unary minus (`-`), unary plus (`+`), bitwise NOT (`~`), and logical `not`.
+
+#### Main Unary Operators
+- **Unary Minus (`-`):** Flips the sign of a numeric value (positive to negative or negative to positive).
+- **Unary Plus (`+`):** Explicitly denotes a positive number; for standard numbers it leaves the value unchanged (and can also convert certain objects/arrays depending on type).
+- **Bitwise NOT (`~`):** Inverts every bit of an integer using two's complement arithmetic (`~x` evaluates to `-(x + 1)`).
+- **Logical `not`:** Returns the opposite Boolean value (`True` becomes `False`, `False` becomes `True`, or evaluates truthiness of any object).
+
+```python
+x = 10
+y = -4
+is_ready = True
+
+# Unary minus and unary plus
+print(-x)        # -10
+print(-y)        # 4
+print(+x)        # 10
+print(+y)        # -4
+
+# Bitwise NOT (~x == -(x + 1))
+print(~x)        # -11
+print(~y)        # 3
+
+# Logical not
+print(not is_ready)  # False
+print(not 0)         # True
+print(not "text")    # False
+```
+
+#### Practical Example: Toggling State & Inverting Temperature/Balance Deltas
+Unary operators are handy for flipping Boolean flags, reversing direction/change signs, or toggling states cleanly.
+
+```python
+# 1. Toggling a feature flag or mode
+dark_mode = False
+dark_mode = not dark_mode
+print(f"Dark mode enabled: {dark_mode}")  # Dark mode enabled: True
+
+# 2. Reversing a movement or net change value
+net_change = 12.5
+reversed_change = -net_change
+print(f"Reversed change: {reversed_change}")  # Reversed change: -12.5
+```
