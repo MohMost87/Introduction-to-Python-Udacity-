@@ -176,3 +176,54 @@ large_sample_size = 2.5e6   # 2500000.0
 permissions_mask = 0b101    # Decimal 5 (binary 101)
 print(bin(permissions_mask))  # '0b101'
 ```
+### Understanding Numbers and Strings in Python
+
+Python supports several numeric types, number-base prefixes, and text sequences (`str`) out of the box.
+
+#### Exploring Different Types of Numbers
+- **Integers (`int`):** Positive or negative whole numbers without a decimal point—useful for counts (apples, cars) or whole time units.
+- **Floating Point Numbers (`float`):** Numbers with a decimal point for fractional or non-whole values such as prices (`4.99`) or measurements.
+- **Scientific Notation:** Shorthand using `e` or `E` (powers of 10) to write very large or very small `float` values cleanly, such as `1e6` for `1000000.0`.
+
+```python
+# Integers
+apples = 12
+cars = -2
+elapsed_seconds = 90
+
+# Floating point numbers
+item_price = 4.99
+tax_rate = 0.15
+
+# Scientific notation (produces float values)
+million = 1e6          # 1000000.0
+micro_step = 2.5e-4    # 0.00025
+```
+
+#### Numbers with Various Bases
+Python integer literals can be written in different numeral bases using prefixes, all evaluating to standard integer values in Python:
+- **Binary (Base 2):** Digits `0`–`1` with a `0b` prefix (e.g., `0b1010` equals `10`).
+- **Octal (Base 8):** Digits `0`–`7` with a `0o` prefix (e.g., `0o12` equals `10`).
+- **Decimal (Base 10):** Standard base-10 digits `0`–`9` with no prefix (e.g., `10`).
+- **Hexadecimal (Base 16):** Digits `0`–`9` and letters `A`–`F` (case-insensitive) with a `0x` prefix (e.g., `0xA` equals `10`).
+
+```python
+binary_num = 0b1010    # 10
+octal_num = 0o12       # 10
+decimal_num = 10       # 10
+hex_num = 0xA          # 10
+
+print(binary_num, octal_num, decimal_num, hex_num)  # 10 10 10 10
+print(bin(10), oct(10), hex(10))                    # '0b1010' '0o12' '0xa'
+```
+
+#### Introduction to Strings
+- **Strings (`str`):** Text sequences enclosed in single (`'...'`) or double (`"..."`) quotes (and triple quotes for multi-line text), assigned to variables for messages, labels, or status text such as `"Login successful."`.
+
+```python
+status_message = "Login successful."
+username = 'alex_dev'
+greeting = f"Welcome back, {username}! {status_message}"
+
+print(greeting)  # Welcome back, alex_dev! Login successful.
+```
