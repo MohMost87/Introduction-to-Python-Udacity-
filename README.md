@@ -889,3 +889,89 @@ print(a >= b)
   <p><strong>Output:</strong> <code>True</code></p>
   <p><strong>Explanation:</strong> The <code>&gt;=</code> operator checks if <code>a</code> is greater than or equal to <code>b</code>. Since <code>10</code> is greater than <code>7</code>, the expression evaluates to <code>True</code>.</p>
 </details>
+
+
+
+<h2>Understanding Relational Operators in Python</h2>
+<p>Relational operators compare values in Python and return Boolean outcomes (<code>True</code> or <code>False</code>). Developers use them to evaluate conditions and control program flow.</p>
+
+<hr>
+
+<h3>Equal to (<code>==</code>)</h3>
+<ul>
+  <li>Checks if two values are equal.</li>
+  <li>Returns <code>True</code> if both sides hold equal values.</li>
+  <li><strong>Note:</strong> Do not confuse <code>==</code> (equality check) with <code>=</code> (variable assignment).</li>
+</ul>
+
+<pre><code class="language-python">a = 10
+b = 10
+print(a == b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Not Equal to (<code>!=</code>)</h3>
+<ul>
+  <li>Verifies if two values differ.</li>
+  <li>Returns <code>True</code> if <code>a</code> and <code>b</code> are not equal.</li>
+</ul>
+
+<pre><code class="language-python">a = 10
+b = 5
+print(a != b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Greater Than (<code>&gt;</code>)</h3>
+<ul>
+  <li>Checks if the left value is larger than the right value.</li>
+  <li>Returns <code>True</code> if <code>a</code> exceeds <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 10
+b = 5
+print(a > b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Greater Than or Equal to (<code>&gt;=</code>)</h3>
+<ul>
+  <li>Checks if the left value is greater than or equal to the right value.</li>
+  <li>Returns <code>True</code> when <code>a</code> is larger than or equal to <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 5
+b = 5
+print(a >= b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Less Than (<code>&lt;</code>)</h3>
+<ul>
+  <li>Checks if the left value is smaller than the right value.</li>
+  <li>Returns <code>True</code> if <code>a</code> is less than <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 4
+b = 9
+print(a < b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Less Than or Equal to (<code>&lt;=</code>)</h3>
+<ul>
+  <li>Checks if the left value is less than or equal to the right value.</li>
+  <li>Returns <code>True</code> when <code>a</code> is smaller than or equal to <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 7
+b = 7
+print(a <= b)  # output : True
+</code></pre>
+
+<p>Mastering these relational operators gives you the foundation to write clear conditions and make logical decisions in Python.</p>
