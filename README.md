@@ -1215,3 +1215,62 @@ passed = score &gt;= 60
 print(f"[DEBUG] score={score}, passed={passed}")
 print("Result:", "Passed" if passed else "Needs retake")
 </code></pre>
+<h2>Customizing the <code>print()</code> Function with Parameters</h2>
+<p>Python 3's <code>print()</code> function includes optional keyword parameters—<code>sep</code> and <code>end</code>—that let you control spacing between arguments and how lines terminate.</p>
+
+<hr>
+
+<h3>Key Elements</h3>
+<ul>
+  <li><strong><code>print()</code> Basics:</strong> Outputs text, variables, and expressions to the console.</li>
+  <li><strong><code>sep</code> (Separator):</strong> Sets the string placed between multiple arguments passed to <code>print()</code>. Default is a single space (<code>" "</code>).</li>
+  <li><strong><code>end</code> (Ending):</strong> Sets the string printed after the final argument. Default is a newline (<code>"\n"</code>).</li>
+</ul>
+
+<hr>
+
+<h3>Understanding Parameters &amp; Fast Food Analogy</h3>
+<ul>
+  <li><strong>Required vs. Optional Parameters:</strong> Optional parameters already have built-in default values, so you only pass them when you want different behavior.</li>
+  <li><strong>Default Behavior:</strong> By default, <code>sep=" "</code> separates items with a space, and <code>end="\n"</code> moves the cursor to a new line.</li>
+  <li><strong>Fast Food Analogy:</strong> Ordering a standard combo meal is like relying on default parameter values; swapping fries for wedges or adding a drink is like passing custom values for <code>sep</code> or <code>end</code>.</li>
+</ul>
+
+<hr>
+
+<h3>Examples</h3>
+
+<h4>1. Basic Custom <code>sep</code> and <code>end</code></h4>
+<pre><code class="language-python">print("Hello", "World", sep=", ", end="!")
+# output : Hello, World!
+</code></pre>
+
+<h4>2. Custom Delimiters (Dates, Paths, CSV)</h4>
+<pre><code class="language-python">print("2026", "11", "24", sep="-")          # output : 2026-11-24
+print("apple", "banana", "cherry", sep=" | ")  # output : apple | banana | cherry
+</code></pre>
+
+<h4>3. Keeping Multiple <code>print()</code> Calls on One Line</h4>
+<pre><code class="language-python">print("Loading", end="... ")
+print("Done!")
+# output : Loading... Done!
+</code></pre>
+
+<hr>
+
+<h3>Takeaway</h3>
+<p>Using <code>sep</code> and <code>end</code> makes console output cleaner and more flexible without manually concatenating strings or adding extra formatting logic.</p>
+
+<hr>
+
+<h3>Quiz Question</h3>
+<p>What will the following Python code output?</p>
+
+<pre><code class="language-python">print("Python", "is", "fun", sep="-", end="!!")
+</code></pre>
+
+<details>
+  <summary><strong>Click to reveal answer</strong></summary>
+  <p><strong>Output:</strong> <code>Python-is-fun!!</code></p>
+  <p><strong>Explanation:</strong> <code>sep="-"</code> joins the three words with hyphens instead of spaces, and <code>end="!!"</code> ends the output with two exclamation marks instead of a newline.</p>
+</details>
