@@ -889,3 +889,204 @@ print(a >= b)
   <p><strong>Output:</strong> <code>True</code></p>
   <p><strong>Explanation:</strong> The <code>&gt;=</code> operator checks if <code>a</code> is greater than or equal to <code>b</code>. Since <code>10</code> is greater than <code>7</code>, the expression evaluates to <code>True</code>.</p>
 </details>
+
+
+
+<h2>Understanding Relational Operators in Python</h2>
+<p>Relational operators compare values in Python and return Boolean outcomes (<code>True</code> or <code>False</code>). Developers use them to evaluate conditions and control program flow.</p>
+
+<hr>
+
+<h3>Equal to (<code>==</code>)</h3>
+<ul>
+  <li>Checks if two values are equal.</li>
+  <li>Returns <code>True</code> if both sides hold equal values.</li>
+  <li><strong>Note:</strong> Do not confuse <code>==</code> (equality check) with <code>=</code> (variable assignment).</li>
+</ul>
+
+<pre><code class="language-python">a = 10
+b = 10
+print(a == b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Not Equal to (<code>!=</code>)</h3>
+<ul>
+  <li>Verifies if two values differ.</li>
+  <li>Returns <code>True</code> if <code>a</code> and <code>b</code> are not equal.</li>
+</ul>
+
+<pre><code class="language-python">a = 10
+b = 5
+print(a != b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Greater Than (<code>&gt;</code>)</h3>
+<ul>
+  <li>Checks if the left value is larger than the right value.</li>
+  <li>Returns <code>True</code> if <code>a</code> exceeds <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 10
+b = 5
+print(a > b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Greater Than or Equal to (<code>&gt;=</code>)</h3>
+<ul>
+  <li>Checks if the left value is greater than or equal to the right value.</li>
+  <li>Returns <code>True</code> when <code>a</code> is larger than or equal to <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 5
+b = 5
+print(a >= b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Less Than (<code>&lt;</code>)</h3>
+<ul>
+  <li>Checks if the left value is smaller than the right value.</li>
+  <li>Returns <code>True</code> if <code>a</code> is less than <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 4
+b = 9
+print(a < b)  # output : True
+</code></pre>
+
+<hr>
+
+<h3>Less Than or Equal to (<code>&lt;=</code>)</h3>
+<ul>
+  <li>Checks if the left value is less than or equal to the right value.</li>
+  <li>Returns <code>True</code> when <code>a</code> is smaller than or equal to <code>b</code>.</li>
+</ul>
+
+<pre><code class="language-python">a = 7
+b = 7
+print(a <= b)  # output : True
+</code></pre>
+
+<p>Mastering these relational operators gives you the foundation to write clear conditions and make logical decisions in Python.</p>
+<h1>Floating Point Numbers &amp; Decimal Arithmetic in Python</h1>
+
+<p>Understanding floating-point accuracy is essential for reliable computations in Python. Because standard floats use binary representation, tiny rounding discrepancies can occur—especially in finance, science, and engineering.</p>
+
+<hr>
+
+<h2>1. Understanding Floating Point Numbers in Computing</h2>
+<p>Floating-point numbers represent real numbers with decimal points, commonly used for measurements, ratios, and currency.</p>
+
+<h3>Key Concepts</h3>
+<ul>
+  <li><strong>Binary Storage &amp; Approximation:</strong> Computers store standard <code>float</code> values in base-2 (binary), which cannot represent many base-10 fractions (like <code>0.1</code> or <code>0.2</code>) exactly.</li>
+  <li><strong>Impact of Inaccuracies:</strong> Small representation errors can accumulate across repeated calculations or comparisons.</li>
+  <li><strong>Mitigation Strategies:</strong> Use Python's <code>decimal</code> module for exact decimal math and format specifiers for consistent display.</li>
+</ul>
+
+<pre><code class="language-python"># Binary float approximation example
+print(0.1 + 0.2)           # output : 0.30000000000000004
+print(0.1 + 0.2 == 0.3)    # output : False
+</code></pre>
+
+<hr>
+
+<h2>2. Mastering Decimal Arithmetic in Python</h2>
+<p>Python's built-in <code>decimal</code> module stores numbers in base-10, avoiding binary representation surprises for decimal values. Always pass strings (such as <code>'0.1'</code>) rather than floats to <code>Decimal()</code> so binary inaccuracy is not introduced upfront.</p>
+
+<pre><code class="language-python">from decimal import Decimal, getcontext
+
+# Exact decimal addition using string inputs
+a = Decimal("0.1")
+b = Decimal("0.2")
+total = a + b
+
+print(total)                 # output : 0.3
+print(total == Decimal("0.3"))  # output : True
+
+# Warning: passing a float copies the binary approximation
+from_float = Decimal(0.1) + Decimal(0.2)
+print(from_float)            # output : 0.3000000000000000444089209850062616169452667236328125
+</code></pre>
+
+<hr>
+
+<h2>3. Calculating and Formatting Prices in Python</h2>
+<p>When adding item prices with standard floats, binary fractions can produce trailing digits like <code>29.099999999999998</code>. Combining arithmetic care with f-string formatting helps format currency cleanly.</p>
+
+<pre><code class="language-python"># Standard float price addition
+item1 = 19.90
+item2 = 5.70
+item3 = 3.50
+
+raw_total = item1 + item2 + item3
+print("Raw float total:", raw_total)               # output : 29.099999999999998
+print(f"F-string default: ${raw_total}")           # output : $29.099999999999998
+print(f"Rounded (no forced zeroes): ${round(raw_total, 2)}")  # output : $29.1
+print(f"Formatted two decimals: ${raw_total:.2f}") # output : $29.10
+</code></pre>
+
+<blockquote>
+  <strong>Formatting Tip:</strong> <code>round(value, 2)</code> rounds to two decimal places numerically, whereas <code>f"{value:.2f}"</code> formats the output string with two decimal places, keeping trailing zeroes such as <code>29.10</code>.
+</blockquote>
+
+<hr>
+
+<h2>4. Using the Decimal Module for Precise Arithmetic &amp; <code>getcontext().prec</code></h2>
+<p><code>getcontext().prec</code> sets the total number of <strong>significant digits</strong> used during <code>Decimal</code> operations (not the number of digits after the decimal point). Testing different precision values shows how rounding behaves when an operation requires more digits than the current context allows.</p>
+
+<h3>Example 1: Exact Price Calculation with <code>Decimal</code></h3>
+<pre><code class="language-python">from decimal import Decimal, getcontext
+
+price_1 = Decimal("19.90")
+price_2 = Decimal("5.70")
+price_3 = Decimal("3.50")
+
+order_total = price_1 + price_2 + price_3
+print(order_total)                  # output : 29.10
+print(f"Total price: ${order_total:.2f}")  # output : Total price: $29.10
+</code></pre>
+
+<h3>Example 2: Testing Different <code>getcontext().prec</code> Values (Significant Digits)</h3>
+<pre><code class="language-python">from decimal import Decimal, getcontext
+
+# Default precision is typically 28 significant digits
+print("Default precision:", getcontext().prec)  # output : 28
+
+# Low precision: 2 significant digits
+getcontext().prec = 2
+print("prec=2 -> 1 / 3:", Decimal("1") / Decimal("3"))         # output : 0.33
+print("prec=2 -> 19.90 + 5.70:", Decimal("19.90") + Decimal("5.70"))  # output : 26
+
+# Medium precision: 4 significant digits
+getcontext().prec = 4
+print("prec=4 -> 1 / 3:", Decimal("1") / Decimal("3"))         # output : 0.3333
+print("prec=4 -> 19.90 + 5.70:", Decimal("19.90") + Decimal("5.70"))  # output : 25.60
+
+# High precision: 10 significant digits
+getcontext().prec = 10
+print("prec=10 -> 1 / 3:", Decimal("1") / Decimal("3"))        # output : 0.3333333333
+print("prec=10 -> 123.45 * 1.5:", Decimal("123.45") * Decimal("1.5"))  # output : 185.175
+</code></pre>
+
+<h3>Example 3: Financial Tax &amp; Discount Calculation</h3>
+<pre><code class="language-python">from decimal import Decimal, getcontext, ROUND_HALF_UP
+
+getcontext().prec = 28
+
+subtotal = Decimal("19.90") + Decimal("5.70") + Decimal("3.50")  # Decimal('29.10')
+tax_rate = Decimal("0.08")
+tax_amount = (subtotal * tax_rate).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+final_total = subtotal + tax_amount
+
+print(f"Subtotal: ${subtotal:.2f}")     # output : Subtotal: $29.10
+print(f"Tax:      ${tax_amount:.2f}")   # output : Tax:      $2.33
+print(f"Total:    ${final_total:.2f}")  # output : Total:    $31.43
+</code></pre>
