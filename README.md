@@ -1155,3 +1155,63 @@ cart_total = unit_price * quantity
 print(f"Unit price: ${unit_price:.2f}")   # output : Unit price: $19.99
 print(f"Total (x{quantity}): ${cart_total:.2f}")  # output : Total (x3): $59.97
 </code></pre>
+<h2>Essential Python Functions: <code>print()</code> and <code>input()</code></h2>
+<p>Python 3 relies on two foundational built-in functions for interacting with users and observing program behavior: <code>input()</code> reads text entered by the user, and <code>print()</code> displays output in the console.</p>
+
+<hr>
+
+<h3>1. The <code>input()</code> Function</h3>
+<ul>
+  <li>Collects information from the user as a <code>str</code> (string) value.</li>
+  <li>Displays an optional prompt message (such as asking for a name, email, or number).</li>
+  <li>Enables interactive programs where user responses control logic and outcomes.</li>
+</ul>
+
+<pre><code class="language-python">name = input("Enter your name: ")
+print(f"Nice to meet you, {name}!")
+</code></pre>
+
+<hr>
+
+<h3>2. The <code>print()</code> Function</h3>
+<ul>
+  <li>Displays text, variables, and formatted strings in the console.</li>
+  <li>Helps trace program execution, verify results, and debug issues quickly.</li>
+  <li>Supports f-strings (<code>f"..."</code>) to embed expressions directly inside text.</li>
+</ul>
+
+<pre><code class="language-python">print("Hello, friend!")
+
+status = "Ready"
+count = 3
+print(f"Status: {status} | Items: {count}")
+</code></pre>
+
+<hr>
+
+<h3>Practical Use Cases &amp; Examples</h3>
+
+<h4>Example 1: Personalized Greeting &amp; Email Confirmation</h4>
+<pre><code class="language-python">user_name = input("Enter your first name: ").strip()
+user_email = input("Enter your email address: ").strip()
+
+print(f"Welcome, {user_name}! Confirmation sent to {user_email}.")
+</code></pre>
+
+<h4>Example 2: Interactive Math &amp; Type Conversion</h4>
+<p>Because <code>input()</code> always returns a string, convert numeric input with <code>int()</code> or <code>float()</code> before doing math.</p>
+
+<pre><code class="language-python">price_input = input("Enter item price ($): ")
+qty_input = input("Enter quantity: ")
+
+total_cost = float(price_input) * int(qty_input)
+print(f"Total cost: ${total_cost:.2f}")
+</code></pre>
+
+<h4>Example 3: Debugging Variable Values &amp; Logic Flow</h4>
+<pre><code class="language-python">score = int(input("Enter test score (0-100): "))
+passed = score &gt;= 60
+
+print(f"[DEBUG] score={score}, passed={passed}")
+print("Result:", "Passed" if passed else "Needs retake")
+</code></pre>
