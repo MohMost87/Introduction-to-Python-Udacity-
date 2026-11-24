@@ -1090,3 +1090,187 @@ print(f"Subtotal: ${subtotal:.2f}")     # output : Subtotal: $29.10
 print(f"Tax:      ${tax_amount:.2f}")   # output : Tax:      $2.33
 print(f"Total:    ${final_total:.2f}")  # output : Total:    $31.43
 </code></pre>
+<h2>Understanding Floating Point Conversion in Python</h2>
+<p>Converting strings to floating-point numbers lets Python evaluate real numeric values instead of text characters, enabling arithmetic, comparisons, and numeric formatting.</p>
+
+<hr>
+
+<h3>Why Convert to Float?</h3>
+<ul>
+  <li><strong>Numeric Operations &amp; Values:</strong> Text strings like <code>"1.50"</code> and <code>"1"</code> are sequences of characters; converting to numeric values allows proper decimal math and accurate comparisons (such as <code>1.50</code> vs. <code>1.0</code>).</li>
+  <li><strong>Handling Large Numbers:</strong> Converting large numeric strings or scientific notation into numbers makes magnitude comparisons clear, such as distinguishing <code>4.9e9</code> (4.9 billion) from <code>4.9e10</code> (49 billion).</li>
+  <li><strong>Note on Exact Money Math:</strong> Standard <code>float</code> works well for general decimal conversion, while <code>Decimal</code> from Python's <code>decimal</code> module is preferred when exact base-10 financial rounding is required.</li>
+</ul>
+
+<hr>
+
+<h3>Converting with the <code>float()</code> Function</h3>
+<ol>
+  <li><strong>Declaration:</strong> Assign a string containing a number to a variable (for example, <code>a = '123.45'</code>).</li>
+  <li><strong>Conversion:</strong> Call <code>b = float(a)</code> to convert the string into a floating-point value.</li>
+  <li><strong>Validation:</strong> Check <code>type(b)</code> to confirm the result is <code>&lt;class 'float'&gt;</code>.</li>
+</ol>
+
+<pre><code class="language-python"># 1. Declaration
+a = '123.45'
+
+# 2. Conversion
+b = float(a)
+
+# 3. Validation
+print(b)        # output : 123.45
+print(type(b))  # output : &lt;class 'float'&gt;
+</code></pre>
+
+<hr>
+
+<h3>More Conversion Examples</h3>
+<pre><code class="language-python"># Large numbers &amp; scientific notation
+small_billion = float("4.9e9")
+large_billion = float("49e9")
+
+print(small_billion)                       # output : 4900000000.0
+print(large_billion)                       # output : 49000000000.0
+print(large_billion &gt; small_billion)       # output : True
+
+# Integer strings and whitespace
+whole_num = float("42")
+padded_num = float("  8.75 \n")
+
+print(whole_num, type(whole_num))          # output : 42.0 &lt;class 'float'&gt;
+print(padded_num)                          # output : 8.75
+</code></pre>
+
+<hr>
+
+<h3>Real-World Application: Shopping Cart Calculation</h3>
+<p>Form inputs, CSV files, and APIs often supply prices as strings. Convert them with <code>float()</code> before multiplying or summing totals.</p>
+
+<pre><code class="language-python">price_str = "19.99"
+quantity = 3
+
+unit_price = float(price_str)
+cart_total = unit_price * quantity
+
+print(f"Unit price: ${unit_price:.2f}")   # output : Unit price: $19.99
+print(f"Total (x{quantity}): ${cart_total:.2f}")  # output : Total (x3): $59.97
+</code></pre>
+<h2>Essential Python Functions: <code>print()</code> and <code>input()</code></h2>
+<p>Python 3 relies on two foundational built-in functions for interacting with users and observing program behavior: <code>input()</code> reads text entered by the user, and <code>print()</code> displays output in the console.</p>
+
+<hr>
+
+<h3>1. The <code>input()</code> Function</h3>
+<ul>
+  <li>Collects information from the user as a <code>str</code> (string) value.</li>
+  <li>Displays an optional prompt message (such as asking for a name, email, or number).</li>
+  <li>Enables interactive programs where user responses control logic and outcomes.</li>
+</ul>
+
+<pre><code class="language-python">name = input("Enter your name: ")
+print(f"Nice to meet you, {name}!")
+</code></pre>
+
+<hr>
+
+<h3>2. The <code>print()</code> Function</h3>
+<ul>
+  <li>Displays text, variables, and formatted strings in the console.</li>
+  <li>Helps trace program execution, verify results, and debug issues quickly.</li>
+  <li>Supports f-strings (<code>f"..."</code>) to embed expressions directly inside text.</li>
+</ul>
+
+<pre><code class="language-python">print("Hello, friend!")
+
+status = "Ready"
+count = 3
+print(f"Status: {status} | Items: {count}")
+</code></pre>
+
+<hr>
+
+<h3>Practical Use Cases &amp; Examples</h3>
+
+<h4>Example 1: Personalized Greeting &amp; Email Confirmation</h4>
+<pre><code class="language-python">user_name = input("Enter your first name: ").strip()
+user_email = input("Enter your email address: ").strip()
+
+print(f"Welcome, {user_name}! Confirmation sent to {user_email}.")
+</code></pre>
+
+<h4>Example 2: Interactive Math &amp; Type Conversion</h4>
+<p>Because <code>input()</code> always returns a string, convert numeric input with <code>int()</code> or <code>float()</code> before doing math.</p>
+
+<pre><code class="language-python">price_input = input("Enter item price ($): ")
+qty_input = input("Enter quantity: ")
+
+total_cost = float(price_input) * int(qty_input)
+print(f"Total cost: ${total_cost:.2f}")
+</code></pre>
+
+<h4>Example 3: Debugging Variable Values &amp; Logic Flow</h4>
+<pre><code class="language-python">score = int(input("Enter test score (0-100): "))
+passed = score &gt;= 60
+
+print(f"[DEBUG] score={score}, passed={passed}")
+print("Result:", "Passed" if passed else "Needs retake")
+</code></pre>
+<h2>Customizing the <code>print()</code> Function with Parameters</h2>
+<p>Python 3's <code>print()</code> function includes optional keyword parameters—<code>sep</code> and <code>end</code>—that let you control spacing between arguments and how lines terminate.</p>
+
+<hr>
+
+<h3>Key Elements</h3>
+<ul>
+  <li><strong><code>print()</code> Basics:</strong> Outputs text, variables, and expressions to the console.</li>
+  <li><strong><code>sep</code> (Separator):</strong> Sets the string placed between multiple arguments passed to <code>print()</code>. Default is a single space (<code>" "</code>).</li>
+  <li><strong><code>end</code> (Ending):</strong> Sets the string printed after the final argument. Default is a newline (<code>"\n"</code>).</li>
+</ul>
+
+<hr>
+
+<h3>Understanding Parameters &amp; Fast Food Analogy</h3>
+<ul>
+  <li><strong>Required vs. Optional Parameters:</strong> Optional parameters already have built-in default values, so you only pass them when you want different behavior.</li>
+  <li><strong>Default Behavior:</strong> By default, <code>sep=" "</code> separates items with a space, and <code>end="\n"</code> moves the cursor to a new line.</li>
+  <li><strong>Fast Food Analogy:</strong> Ordering a standard combo meal is like relying on default parameter values; swapping fries for wedges or adding a drink is like passing custom values for <code>sep</code> or <code>end</code>.</li>
+</ul>
+
+<hr>
+
+<h3>Examples</h3>
+
+<h4>1. Basic Custom <code>sep</code> and <code>end</code></h4>
+<pre><code class="language-python">print("Hello", "World", sep=", ", end="!")
+# output : Hello, World!
+</code></pre>
+
+<h4>2. Custom Delimiters (Dates, Paths, CSV)</h4>
+<pre><code class="language-python">print("2026", "11", "24", sep="-")          # output : 2026-11-24
+print("apple", "banana", "cherry", sep=" | ")  # output : apple | banana | cherry
+</code></pre>
+
+<h4>3. Keeping Multiple <code>print()</code> Calls on One Line</h4>
+<pre><code class="language-python">print("Loading", end="... ")
+print("Done!")
+# output : Loading... Done!
+</code></pre>
+
+<hr>
+
+<h3>Takeaway</h3>
+<p>Using <code>sep</code> and <code>end</code> makes console output cleaner and more flexible without manually concatenating strings or adding extra formatting logic.</p>
+
+<hr>
+
+<h3>Quiz Question</h3>
+<p>What will the following Python code output?</p>
+
+<pre><code class="language-python">print("Python", "is", "fun", sep="-", end="!!")
+</code></pre>
+
+<details>
+  <summary><strong>Click to reveal answer</strong></summary>
+  <p><strong>Output:</strong> <code>Python-is-fun!!</code></p>
+  <p><strong>Explanation:</strong> <code>sep="-"</code> joins the three words with hyphens instead of spaces, and <code>end="!!"</code> ends the output with two exclamation marks instead of a newline.</p>
+</details>
