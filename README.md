@@ -758,3 +758,134 @@ print(True or False and False)  # True (evaluated as: True or (False and False))
   <li><strong>Return Values:</strong> <code>and</code> and <code>or</code> actually return one of their operands rather than strictly <code>True</code> or <code>False</code> (e.g., <code>0 or "default"</code> returns <code>"default"</code>).</li>
   <li><strong>Falsy Values in Python:</strong> <code>False</code>, <code>None</code>, <code>0</code>, <code>0.0</code>, <code>""</code> (empty string), <code>[]</code>, <code>()</code>, <code>{}</code>, and <code>set()</code>. Everything else is truthy.</li>
 </ul>
+<h1>Python Boolean Expressions &amp; Eligibility Logic</h1>
+
+<p>Boolean expressions are used to evaluate conditions that control the flow of Python programs. They are essential for implementing logic, such as determining if a user is eligible for a discount, checking number ranges, or combining multiple criteria.</p>
+
+<hr>
+
+<h2>1. Checking User Eligibility with Boolean Expressions</h2>
+<p>Boolean expressions evaluate whether a specific situation is occurring (<code>True</code> or <code>False</code>) to determine follow-up actions.</p>
+
+<h3>Example Breakdown</h3>
+<ul>
+  <li><strong>Criteria:</strong> The user qualifies for a discount if they have spent more than $100 <strong>or</strong> are a loyalty program member.</li>
+  <li><strong>Logical <code>or</code> Operator:</strong> The user qualifies if <em>either</em> condition is true.</li>
+</ul>
+
+<pre><code class="language-python"># Variable Initialization
+total_spent = 120.50
+is_loyalty_member = False
+
+# Eligibility Check
+qualifies_for_discount = total_spent > 100 or is_loyalty_member
+
+# Output
+print(f"User qualifies for discount: {qualifies_for_discount}")
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre><code class="language-text">User qualifies for discount: True
+</code></pre>
+
+<blockquote>
+  <strong>How It Works:</strong> <code>total_spent &gt; 100</code> evaluates to <code>True</code>, and <code>is_loyalty_member</code> evaluates to <code>False</code>. Because the <code>or</code> operator only requires one condition to be true, the final result is <code>True</code>.
+</blockquote>
+
+<hr>
+
+<h2>2. Checking Number Ranges with Boolean Expressions</h2>
+<p>You can combine comparison operators to verify if a numeric value lies within a specific inclusive range.</p>
+
+<h3>Example Breakdown</h3>
+<ul>
+  <li><strong>Criteria:</strong> Users must be between 18 and 65 years old (inclusive) to qualify for the program.</li>
+  <li><strong>Logical <code>and</code> Operator:</strong> Connects both conditions, making eligibility <code>True</code> only if <em>both</em> boundaries are satisfied.</li>
+</ul>
+
+<pre><code class="language-python"># Define the Variable
+age = 25
+
+# Write the Eligibility Check
+is_eligible = (age >= 18) and (age <= 65)
+
+# Print the Result
+print(f"User is eligible: {is_eligible}")
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre><code class="language-text">User is eligible: True
+</code></pre>
+
+<blockquote>
+  <strong>How It Works:</strong> <code>(age &gt;= 18)</code> confirms the user is 18 or older, while <code>(age &lt;= 65)</code> confirms they are 65 or younger. Both are <code>True</code> for age 25.
+</blockquote>
+
+<hr>
+
+<h2>3. Combining Boolean Conditions for Senior Discount Eligibility</h2>
+<p>Boolean expressions can evaluate completely different data types (like numbers and booleans) simultaneously.</p>
+
+<h3>Example Breakdown</h3>
+<ul>
+  <li><strong>Criteria:</strong> The user is eligible for a senior discount if they are 65 or older <strong>and</strong> possess a valid membership card.</li>
+</ul>
+
+<pre><code class="language-python"># Variable Initialization
+age = 70
+has_membership_card = True
+
+# Eligibility Check
+qualifies_for_senior_discount = (age >= 65) and has_membership_card
+
+# Output
+print(f"User qualifies for senior discount: {qualifies_for_senior_discount}")
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre><code class="language-text">User qualifies for senior discount: True
+</code></pre>
+
+<hr>
+
+<h2>4. Nested Boolean Expressions for Special Offers</h2>
+<p>Parentheses allow you to group and nest Boolean expressions to build complex, multi-factor qualification rules.</p>
+
+<h3>Variables &amp; Conditions</h3>
+<ul>
+  <li><strong>Age Check:</strong> Must be between 18 and 30 (<code>age &gt;= 18 and age &lt;= 30</code>).</li>
+  <li><strong>Spending or Membership Check:</strong> Must exceed $100 <em>or</em> be a loyalty member (<code>total_spent &gt; 100 or loyalty_member</code>).</li>
+  <li><strong>Combined Rule:</strong> Both primary groups must evaluate to <code>True</code> using the <code>and</code> operator.</li>
+</ul>
+
+<pre><code class="language-python"># Define Variables
+age = 30
+total_spent = 150.75
+loyalty_member = True
+
+# Nested Conditions
+qualifies_for_offer = (age >= 18 and age <= 30) and (total_spent > 100 or loyalty_member)
+
+# Output
+print(f"User qualifies for special offer: {qualifies_for_offer}")
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre><code class="language-text">User qualifies for special offer: True
+</code></pre>
+
+<hr>
+
+<h2>Quiz Question</h2>
+<p>What will the following Python code output?</p>
+
+<pre><code class="language-python">a = 10
+b = 7
+print(a >= b)
+</code></pre>
+
+<details>
+  <summary><strong>Click to reveal answer</strong></summary>
+  <p><strong>Output:</strong> <code>True</code></p>
+  <p><strong>Explanation:</strong> The <code>&gt;=</code> operator checks if <code>a</code> is greater than or equal to <code>b</code>. Since <code>10</code> is greater than <code>7</code>, the expression evaluates to <code>True</code>.</p>
+</details>
