@@ -604,3 +604,157 @@ print(f"Can write: {can_write}")                  # True
 permissions ^= EXECUTE
 print(f"After toggling execute: {bin(permissions)}")  # 0b111 (7)
 ```
+<h2>Python Boolean Operators</h2>
+
+<p>Boolean operators in Python are used to combine conditional statements and evaluate expressions to either <code>True</code> or <code>False</code>. Python has three primary logical operators: <code>and</code>, <code>or</code>, and <code>not</code>.</p>
+
+<h3>1. Overview &amp; Precedence</h3>
+<p>When multiple boolean operators appear in a single expression, Python evaluates them in the following order of precedence (from highest to lowest):</p>
+<ol>
+  <li><code>not</code></li>
+  <li><code>and</code></li>
+  <li><code>or</code></li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operator</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>and</code></td>
+      <td>Returns <code>True</code> if <strong>both</strong> statements are true</td>
+      <td><code>True and False</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>or</code></td>
+      <td>Returns <code>True</code> if <strong>at least one</strong> statement is true</td>
+      <td><code>True or False</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>not</code></td>
+      <td>Reverses the result; returns <code>False</code> if the result is true</td>
+      <td><code>not True</code></td>
+      <td><code>False</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. Truth Tables</h3>
+
+<h4><code>and</code> Operator</h4>
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A <code>and</code> B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4><code>or</code> Operator</h4>
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A <code>or</code> B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4><code>not</code> Operator</h4>
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th><code>not</code> A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>3. Code Examples</h3>
+<pre><code class="language-python">x = 10
+y = 5
+
+# and operator
+print(x &gt; 5 and y &lt; 10)   # True
+
+# or operator
+print(x &lt; 5 or y &lt; 10)    # True
+
+# not operator
+print(not(x &gt; 5))         # False
+
+# Combining operators (precedence: not -&gt; and -&gt; or)
+print(True or False and False)  # True (evaluated as: True or (False and False))
+</code></pre>
+
+<h3>4. Short-Circuit Evaluation &amp; Truthiness</h3>
+<ul>
+  <li><strong>Short-Circuiting:</strong> Python stops evaluating as soon as the outcome is determined. In <code>A and B</code>, if <code>A</code> is falsy, <code>B</code> is never evaluated. In <code>A or B</code>, if <code>A</code> is truthy, <code>B</code> is never evaluated.</li>
+  <li><strong>Return Values:</strong> <code>and</code> and <code>or</code> actually return one of their operands rather than strictly <code>True</code> or <code>False</code> (e.g., <code>0 or "default"</code> returns <code>"default"</code>).</li>
+  <li><strong>Falsy Values in Python:</strong> <code>False</code>, <code>None</code>, <code>0</code>, <code>0.0</code>, <code>""</code> (empty string), <code>[]</code>, <code>()</code>, <code>{}</code>, and <code>set()</code>. Everything else is truthy.</li>
+</ul>
