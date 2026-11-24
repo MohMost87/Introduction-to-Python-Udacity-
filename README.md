@@ -426,3 +426,335 @@ seconds = total_seconds % 60
 
 print(f"{hours}h {minutes}m {seconds}s")  # 1h 2m 5s
 ```
+### Shortcut (Compound Assignment) Operators in Python
+
+Shortcut operators—officially called **compound assignment operators**—combine an arithmetic operation with variable assignment in a single step, making code shorter and less repetitive.
+
+#### How Shortcut Operators Work
+- **Shorthand Pattern:** `x += 5` is shorthand for `x = x + 5` (the variable on the left is updated using its current value and the right-hand expression).
+- **Common Arithmetic Shortcuts:** `+=` (add), `-=` (subtract), `*=` (multiply), `/=` (divide into `float`), `//=` (floor divide), `%=` (modulo remainder), and `**=` (exponentiate).
+- **Readability & Safety:** Great for counters, accumulators, and running totals, though keeping expressions simple avoids surprises when types change (for example, `/=` always produces a `float`).
+
+```python
+x = 10
+
+x += 5    # x = 10 + 5   -> 15
+x -= 3    # x = 15 - 3   -> 12
+x *= 2    # x = 12 * 2   -> 24
+x //= 5   # x = 24 // 5  -> 4
+x **= 3   # x = 4 ** 3   -> 64
+x %= 10   # x = 64 % 10  -> 4
+x /= 2    # x = 4 / 2    -> 2.0 (float)
+
+print(x)  # 2.0
+```
+
+#### Practical Example: Tracking Score & Remaining Attempts
+Shortcut operators shine when updating counters, totals, or remaining budgets inside loops and functions.
+
+```python
+# 1. Accumulating points across rounds
+total_score = 0
+round_points = [15, 25, 10]
+
+for points in round_points:
+    total_score += points
+
+print(f"Final score: {total_score}")  # Final score: 50
+
+# 2. Counting down remaining retries
+retries_left = 3
+while retries_left > 0:
+    print(f"Attempting connection... ({retries_left} retries left)")
+    retries_left -= 1
+```
+### Unary Operators in Python
+
+A **unary operator** operates on a single operand (value or variable) rather than two. In Python, the main unary operators are unary minus (`-`), unary plus (`+`), bitwise NOT (`~`), and logical `not`.
+
+#### Main Unary Operators
+- **Unary Minus (`-`):** Flips the sign of a numeric value (positive to negative or negative to positive).
+- **Unary Plus (`+`):** Explicitly denotes a positive number; for standard numbers it leaves the value unchanged (and can also convert certain objects/arrays depending on type).
+- **Bitwise NOT (`~`):** Inverts every bit of an integer using two's complement arithmetic (`~x` evaluates to `-(x + 1)`).
+- **Logical `not`:** Returns the opposite Boolean value (`True` becomes `False`, `False` becomes `True`, or evaluates truthiness of any object).
+
+```python
+x = 10
+y = -4
+is_ready = True
+
+# Unary minus and unary plus
+print(-x)        # -10
+print(-y)        # 4
+print(+x)        # 10
+print(+y)        # -4
+
+# Bitwise NOT (~x == -(x + 1))
+print(~x)        # -11
+print(~y)        # 3
+
+# Logical not
+print(not is_ready)  # False
+print(not 0)         # True
+print(not "text")    # False
+```
+
+#### Practical Example: Toggling State & Inverting Temperature/Balance Deltas
+Unary operators are handy for flipping Boolean flags, reversing direction/change signs, or toggling states cleanly.
+
+```python
+# 1. Toggling a feature flag or mode
+dark_mode = False
+dark_mode = not dark_mode
+print(f"Dark mode enabled: {dark_mode}")  # Dark mode enabled: True
+
+# 2. Reversing a movement or net change value
+net_change = 12.5
+reversed_change = -net_change
+print(f"Reversed change: {reversed_change}")  # Reversed change: -12.5
+```
+### Operator Precedence in Python
+
+**Operator precedence** determines the order in which Python evaluates operators in an expression when multiple operators appear together. Higher-precedence operators run before lower-precedence ones unless overridden by parentheses `()`.
+
+#### Precedence Order (Highest to Lowest — Common Operators)
+1. **Parentheses `()`:** Always evaluated first—use parentheses to make order explicit and readable.
+2. **Exponentiation `**`:** Evaluated before multiplication/division, and associates **right-to-left** (e.g., `2 ** 3 ** 2` means `2 ** (3 ** 2)` = `512`).
+3. **Unary `+x`, `-x`, `~x`:** Sign and bitwise NOT operators.
+4. **Multiplicative `*`, `/`, `//`, `%`:** Evaluated **left-to-right** at equal precedence.
+5. **Additive `+`, `-`:** Evaluated **left-to-right** after multiplicative operators.
+6. **Comparison `==`, `!=`, `>`, `<`, `>=`, `<=`, `is`, `is not`, `in`, `not in`:** Evaluated after arithmetic.
+7. **Logical `not`, then `and`, then `or`:** `not` binds tightest among logical operators, followed by `and`, then `or`.
+
+```python
+# 1. Exponentiation (**) and right-to-left associativity
+print(2 ** 3 ** 2)        # 512  -> 2 ** (3 ** 2) = 2 ** 9
+
+# 2. Multiplicative (*, /, //, %) vs. Additive (+, -)
+print(10 + 2 * 3)         # 16   -> 10 + (2 * 3)
+print((10 + 2) * 3)       # 36   -> parentheses override precedence
+print(20 - 10 // 4 * 2)   # 16   -> 20 - ((10 // 4) * 2) = 20 - (2 * 2)
+
+# 3. Logical precedence: not -> and -> or
+is_admin = False
+is_staff = True
+is_suspended = False
+
+can_access = is_admin or is_staff and not is_suspended
+print(can_access)         # True -> False or (True and (not False)) = True
+```
+
+#### Practical Example: Discount & Eligibility Calculation
+Parentheses clarify intent so readers and teammates do not have to guess how arithmetic and boolean conditions group together.
+
+```python
+base_price = 100
+discount_rate = 0.2
+item_count = 3
+has_coupon = True
+
+# Clear grouping with parentheses
+final_total = (base_price * item_count) * (1 - discount_rate)
+qualifies_for_bonus = has_coupon and (final_total >= 200)
+
+print(f"Final total: {final_total}")                # Final total: 240.0
+print(f"Qualifies for bonus: {qualifies_for_bonus}")  # Qualifies for bonus: True
+```
+### Bitwise Operators in Programming
+
+**Bitwise operators** manipulate numbers at the binary bit level (`0` and `1`). They are commonly used for feature flags/permissions, bitmasks, low-level hardware/protocol work, and fast powers-of-two shifts.
+
+#### Core Bitwise Operators
+- **Bitwise AND (`&`):** Returns `1` in each bit position where **both** operands have `1` (useful for masking/checking bits).
+- **Bitwise OR (`|`):** Returns `1` in each bit position where **at least one** operand has `1` (useful for setting/enabling flags).
+- **Bitwise XOR (`^`):** Returns `1` where the bits of the two operands **differ** (useful for toggling bits).
+- **Bitwise NOT (`~`):** Inverts all bits of an integer; in Python's two's complement representation, `~x` equals `-(x + 1)`.
+- **Left Shift (`<<`):** Shifts bits left by `n` positions, filling right positions with `0` (equivalent to multiplying by $2^n$ for non-negative integers).
+- **Right Shift (`>>`):** Shifts bits right by `n` positions, discarding shifted-out bits (equivalent to floor-dividing by $2^n$ for non-negative integers).
+
+```python
+a = 0b1100  # 12 in decimal
+b = 0b1010  # 10 in decimal
+
+print(bin(a & b), a & b)    # 0b1000  8   (AND)
+print(bin(a | b), a | b)    # 0b1110  14  (OR)
+print(bin(a ^ b), a ^ b)    # 0b110   6   (XOR)
+print(~a)                   # -13         (NOT: -(12 + 1))
+print(bin(a << 1), a << 1)  # 0b11000 24  (12 * 2^1)
+print(bin(a >> 1), a >> 1)  # 0b110   6   (12 // 2^1)
+```
+
+#### Practical Example: Permission Flags & Bitmasks
+Bitwise OR (`|`), AND (`&`), and XOR (`^`) make it clean to combine, check, and toggle individual boolean permissions inside a single integer.
+
+```python
+READ = 0b001    # 1
+WRITE = 0b010   # 2
+EXECUTE = 0b100 # 4
+
+# Grant READ and WRITE permissions using OR (|)
+permissions = READ | WRITE
+print(f"Permissions binary: {bin(permissions)}")  # 0b11 (3)
+
+# Check if WRITE permission is set using AND (&)
+can_write = (permissions & WRITE) != 0
+print(f"Can write: {can_write}")                  # True
+
+# Toggle EXECUTE permission using XOR (^)
+permissions ^= EXECUTE
+print(f"After toggling execute: {bin(permissions)}")  # 0b111 (7)
+```
+<h2>Python Boolean Operators</h2>
+
+<p>Boolean operators in Python are used to combine conditional statements and evaluate expressions to either <code>True</code> or <code>False</code>. Python has three primary logical operators: <code>and</code>, <code>or</code>, and <code>not</code>.</p>
+
+<h3>1. Overview &amp; Precedence</h3>
+<p>When multiple boolean operators appear in a single expression, Python evaluates them in the following order of precedence (from highest to lowest):</p>
+<ol>
+  <li><code>not</code></li>
+  <li><code>and</code></li>
+  <li><code>or</code></li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operator</th>
+      <th>Description</th>
+      <th>Example</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>and</code></td>
+      <td>Returns <code>True</code> if <strong>both</strong> statements are true</td>
+      <td><code>True and False</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>or</code></td>
+      <td>Returns <code>True</code> if <strong>at least one</strong> statement is true</td>
+      <td><code>True or False</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>not</code></td>
+      <td>Reverses the result; returns <code>False</code> if the result is true</td>
+      <td><code>not True</code></td>
+      <td><code>False</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>2. Truth Tables</h3>
+
+<h4><code>and</code> Operator</h4>
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A <code>and</code> B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4><code>or</code> Operator</h4>
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A <code>or</code> B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+      <td><code>True</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+      <td><code>False</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4><code>not</code> Operator</h4>
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th><code>not</code> A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>True</code></td>
+      <td><code>False</code></td>
+    </tr>
+    <tr>
+      <td><code>False</code></td>
+      <td><code>True</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>3. Code Examples</h3>
+<pre><code class="language-python">x = 10
+y = 5
+
+# and operator
+print(x &gt; 5 and y &lt; 10)   # True
+
+# or operator
+print(x &lt; 5 or y &lt; 10)    # True
+
+# not operator
+print(not(x &gt; 5))         # False
+
+# Combining operators (precedence: not -&gt; and -&gt; or)
+print(True or False and False)  # True (evaluated as: True or (False and False))
+</code></pre>
+
+<h3>4. Short-Circuit Evaluation &amp; Truthiness</h3>
+<ul>
+  <li><strong>Short-Circuiting:</strong> Python stops evaluating as soon as the outcome is determined. In <code>A and B</code>, if <code>A</code> is falsy, <code>B</code> is never evaluated. In <code>A or B</code>, if <code>A</code> is truthy, <code>B</code> is never evaluated.</li>
+  <li><strong>Return Values:</strong> <code>and</code> and <code>or</code> actually return one of their operands rather than strictly <code>True</code> or <code>False</code> (e.g., <code>0 or "default"</code> returns <code>"default"</code>).</li>
+  <li><strong>Falsy Values in Python:</strong> <code>False</code>, <code>None</code>, <code>0</code>, <code>0.0</code>, <code>""</code> (empty string), <code>[]</code>, <code>()</code>, <code>{}</code>, and <code>set()</code>. Everything else is truthy.</li>
+</ul>
